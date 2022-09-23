@@ -16,5 +16,5 @@ app.use("/assets", express.static("assets"));
 // app.use("../fe/public/images/uploads", express.static("uploads"));
 
 app.listen(port, () => {
-  console.log(`App is listening on port number ${port}`);
+    console.log(`book-store-api is listening on port : ${port}`);
 });
