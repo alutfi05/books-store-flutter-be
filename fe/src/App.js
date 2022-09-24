@@ -4,6 +4,7 @@ import "./App.css";
 import { Navbar, MainContent } from "./components";
 
 import LoginPage from "./pages/Login";
+import Register from "./pages/Register";
 
 const App = () => {
     const [loginStatus, setLoginStatus] = useState(false);
@@ -33,11 +34,12 @@ const App = () => {
                         <Navbar
                             loginStatus={loginStatus}
                             loginCbHandler={loginCbHandler}
-                        ></Navbar>
-                        <MainContent></MainContent>
+                        />
+                        <MainContent />
                     </div>
                 ) : (
-                    <LoginPage loginCbHandler={loginCbHandler}></LoginPage>
+                    // <LoginPage loginCbHandler={loginCbHandler} />
+                    <Register />
                 )}
             </div>
         </>

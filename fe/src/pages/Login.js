@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import BookStore from "../images/digital-bookstore-concept-free-vector.jpg";
+import Register from "./Register";
 
 const Login = (props) => {
     const { loginCbHandler } = props;
@@ -83,12 +85,13 @@ const Login = (props) => {
                         <div className="mb-3 text-center">
                             <p>
                                 Don't have an account ?{" "}
-                                <a
-                                    href="/admins/register"
+                                <Link
+                                    to="/admins/register"
                                     className="text-decoration-none text-primary"
+                                    component={<Register />}
                                 >
                                     Create an account here
-                                </a>
+                                </Link>
                             </p>
                         </div>
                     </div>
