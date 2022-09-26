@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
+import { Home } from "../components";
 import {
     Admin,
     DetailAdmin,
@@ -57,8 +57,8 @@ const MainContent = () => {
                     element={<Category />}
                 >
                     <Route path="" element={<ListCategories />}></Route>
-                    <Route path="" element={<AddCategory />}></Route>
-                    <Route path="">
+                    <Route path="add" element={<AddCategory />}></Route>
+                    <Route path="edit">
                         <Route path=":id" element={<EditCategory />}></Route>
                     </Route>
                     <Route path="detail">
@@ -75,7 +75,7 @@ const MainContent = () => {
                 </Route>
                 <Route activeClassName="active" path="books" element={<Book />}>
                     <Route path="" element={<ListBooks />}></Route>
-                    <Route path="" element={<AddBook />}></Route>
+                    <Route path="add" element={<AddBook />}></Route>
                     <Route path="edit">
                         <Route path=":id" element={<EditBook />}></Route>
                     </Route>
@@ -89,7 +89,7 @@ const MainContent = () => {
                     element={<Author />}
                 >
                     <Route path="" element={<ListAuthors />}></Route>
-                    <Route path="" element={<AddAuthor />}></Route>
+                    <Route path="add" element={<AddAuthor />}></Route>
                     <Route path="edit">
                         <Route path=":id" element={<EditAuthor />}></Route>
                     </Route>
@@ -103,7 +103,7 @@ const MainContent = () => {
                     element={<Publisher />}
                 >
                     <Route path="" element={<ListPublishers />}></Route>
-                    <Route path="" element={<AddPublisher />}></Route>
+                    <Route path="add" element={<AddPublisher />}></Route>
                     <Route path="edit">
                         <Route path=":id" element={<EditPublisher />}></Route>
                     </Route>

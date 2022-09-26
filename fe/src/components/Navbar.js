@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { HiOutlineLogout } from "react-icons/hi";
 
 const Navbar = (props) => {
     const navigation = useNavigate();
@@ -66,10 +67,13 @@ const Navbar = (props) => {
                             <li className="nav-item">
                                 {loginStatus ? (
                                     <a
-                                        className="nav-link"
-                                        href="#"
+                                        className="nav-link btn btn-danger text-white"
+                                        href=""
                                         onClick={() => logoutHandler()}
                                     >
+                                        <span className="me-2">
+                                            <HiOutlineLogout />
+                                        </span>
                                         Logout
                                     </a>
                                 ) : (

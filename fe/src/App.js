@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
-import { Navbar, MainContent } from "./components";
+import { MainContent, Navbar } from "./components";
 
 import LoginPage from "./pages/Login";
 import Register from "./pages/Register";
@@ -35,6 +35,7 @@ const App = () => {
                             loginStatus={loginStatus}
                             loginCbHandler={loginCbHandler}
                         />
+
                         <MainContent />
                     </div>
                 ) : (

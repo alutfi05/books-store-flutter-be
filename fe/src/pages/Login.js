@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import BookStore from "../images/digital-bookstore-concept-free-vector.jpg";
 import Register from "./Register";
 
 const Login = (props) => {
     const { loginCbHandler } = props;
+
     const [form, setForm] = useState({
         email: "",
         password: "",
     });
+
+    const navigation = useNavigate();
 
     const loginUser = async () => {
         try {
@@ -28,6 +31,7 @@ const Login = (props) => {
 
     const submitHandler = () => {
         loginUser();
+        navigation("/home");
     };
 
     return (
