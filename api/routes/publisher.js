@@ -7,9 +7,9 @@ publisherRoutes.post("/add", auth, PublisherController.add);
 publisherRoutes.put("/:id", auth, PublisherController.edit);
 publisherRoutes.delete("/:id", auth, PublisherController.delete);
 publisherRoutes.get(
-  "/publisher/:id",
-  auth,
-  PublisherController.getPublisherInfo
+    "/publisher/:id",
+    auth,
+    PublisherController.getPublisherInfo
 );
 
 module.exports = publisherRoutes;

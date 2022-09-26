@@ -7,6 +7,6 @@ bookRoutes.get("/", BookController.getAllBooks);
 bookRoutes.post("/add", auth, upload.single("image"), BookController.add);
 bookRoutes.put("/:id", auth, upload.single("image"), BookController.edit);
 bookRoutes.delete("/:id", auth, BookController.delete);
-bookRoutes.get("/book/:id", BookController.getBookInfo);
+bookRoutes.get("/book/:id", auth, BookController.getBookInfo);
 
 module.exports = bookRoutes;

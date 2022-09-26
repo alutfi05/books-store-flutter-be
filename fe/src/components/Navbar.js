@@ -21,7 +21,7 @@ const Navbar = (props) => {
         <>
             <nav className="navbar navbar-expand-lg nav-bg shadow-sm p-3 mb-5 bg-body rounded">
                 <div className="container">
-                    <Link className="navbar-brand font-logo me-5" to="/">
+                    <Link className="navbar-brand font-logo me-5" to="/home">
                         Books Store
                         <span className="small black">&copy;</span>
                     </Link>
@@ -39,22 +39,22 @@ const Navbar = (props) => {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto fw-semibold">
                             <li className="nav-item me-3">
-                                <Link className="nav-link" to="">
+                                <Link className="nav-link" to="/books">
                                     Books List
                                 </Link>
                             </li>
                             <li className="nav-item me-3">
-                                <Link className="nav-link" to="">
+                                <Link className="nav-link" to="/categories">
                                     Category
                                 </Link>
                             </li>
                             <li className="nav-item me-3">
-                                <Link className="nav-link" to="">
+                                <Link className="nav-link" to="/authors">
                                     Author
                                 </Link>
                             </li>
                             <li className="nav-item me-3">
-                                <Link className="nav-link" to="">
+                                <Link className="nav-link" to="/publishers">
                                     Publisher
                                 </Link>
                             </li>

@@ -38,8 +38,8 @@ const App = () => {
                         <MainContent />
                     </div>
                 ) : (
-                    // <LoginPage loginCbHandler={loginCbHandler} />
-                    <Register />
+                    <LoginPage loginCbHandler={loginCbHandler} />
+                    // <Register />
                 )}
             </div>
         </>

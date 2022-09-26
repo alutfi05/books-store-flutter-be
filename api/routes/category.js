@@ -6,6 +6,6 @@ categoryRoutes.get("/", CategoryController.getAllCategories);
 categoryRoutes.post("/add", auth, CategoryController.add);
 categoryRoutes.put("/:id", auth, CategoryController.edit);
 categoryRoutes.delete("/:id", auth, CategoryController.delete);
-categoryRoutes.get("/category/:id", CategoryController.getCategoryInfo);
+categoryRoutes.get("/category/:id", auth, CategoryController.getCategoryInfo);
 
 module.exports = categoryRoutes;
