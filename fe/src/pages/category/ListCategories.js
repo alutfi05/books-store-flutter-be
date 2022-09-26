@@ -5,7 +5,7 @@ import Loading from "../../helpers/Loading";
 import { BiCategoryAlt } from "react-icons/bi";
 import { MdModeEdit } from "react-icons/md";
 import { RiDeleteBin5Fill } from "react-icons/ri";
-import { BsBookshelf, BsFillInfoCircleFill } from "react-icons/bs";
+import { BsFillInfoCircleFill } from "react-icons/bs";
 
 const ListCategories = () => {
     const [categories, setCategories] = useState([]);

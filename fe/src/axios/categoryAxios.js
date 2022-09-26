@@ -80,6 +80,10 @@ const removeCategory = async (id, access_token) => {
                 );
             }
         });
+
+        setTimeout(() => {
+            window.location.href = "/categories";
+        }, 3000);
     } catch (error) {
         console.log(error);
     }

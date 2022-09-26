@@ -70,7 +70,7 @@ const AddCategory = () => {
                         <span className="me-2">
                             <MdAddTask />
                         </span>
-                        Submit
+                        Edit
                     </button>
                     <Link
                         to="/categories"

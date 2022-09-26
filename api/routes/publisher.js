@@ -4,7 +4,7 @@ const { auth } = require("../middlewares/auth");
 
 publisherRoutes.get("/", PublisherController.getAllPublishers);
 publisherRoutes.post("/add", auth, PublisherController.add);
-publisherRoutes.put("/:id", auth, PublisherController.edit);
+publisherRoutes.put("/edit/:id", auth, PublisherController.edit);
 publisherRoutes.delete("/:id", auth, PublisherController.delete);
 publisherRoutes.get(
     "/publisher/:id",
