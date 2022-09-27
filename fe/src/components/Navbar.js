@@ -22,9 +22,12 @@ const Navbar = (props) => {
         <>
             <nav className="navbar navbar-expand-lg nav-bg shadow-sm p-3 mb-5 bg-body rounded">
                 <div className="container">
-                    <Link className="navbar-brand font-logo me-5" to="/home">
-                        Books Store
-                        <span className="small black">&copy;</span>
+                    <Link
+                        className="navbar-brand font-logo font-logo me-5 lead fw-bolder"
+                        to="/home"
+                        style={{ fontSize: "28px" }}
+                    >
+                        Book Store
                     </Link>
                     <button
                         className="navbar-toggler"

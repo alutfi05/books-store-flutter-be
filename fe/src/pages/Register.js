@@ -21,7 +21,7 @@ const Register = () => {
 
     return (
         <>
-            <div className="w-50 mx-auto">
+            <div className="w-50 mx-auto mt-5">
                 <div className="container">
                     <div className="text-center mb-5">
                         <img

@@ -5,7 +5,12 @@ const { auth } = require("../middlewares/auth");
 
 authorRoutes.get("/", AuthorController.getAllAuthors);
 authorRoutes.post("/add", auth, upload.single("image"), AuthorController.add);
-authorRoutes.put("/:id", auth, upload.single("image"), AuthorController.edit);
+authorRoutes.put(
+    "/edit/:id",
+    auth,
+    upload.single("image"),
+    AuthorController.edit
+);
 authorRoutes.delete("/:id", auth, AuthorController.delete);
 authorRoutes.get("/author/:id", auth, AuthorController.getAuthorInfo);
 

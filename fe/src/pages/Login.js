@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import BookStore from "../images/digital-bookstore-concept-free-vector.jpg";
 import Register from "./Register";
@@ -36,7 +36,7 @@ const Login = (props) => {
 
     return (
         <>
-            <div className="w-50 mx-auto">
+            <div className="w-50 mx-auto mt-5">
                 <div className="container">
                     <div className="text-center mb-5">
                         <img
@@ -45,7 +45,11 @@ const Login = (props) => {
                             style={{ width: "200px" }}
                             className="mt-3"
                         />
-                        <h2 className="mt-3">Welcome Back, Admin !</h2>
+                        <h2 className="mt-3 fw-bold">
+                            Welcome Back,{" "}
+                            <span style={{ color: "var(--green)" }}>Admin</span>{" "}
+                            !
+                        </h2>
                         <p className="text-sm">
                             Enter your credentials to access admin dashboard.
                         </p>
@@ -92,7 +96,6 @@ const Login = (props) => {
                                 <Link
                                     to="/admins/register"
                                     className="text-decoration-none text-primary"
-                                    component={<Register />}
                                 >
                                     Create an account here
                                 </Link>
