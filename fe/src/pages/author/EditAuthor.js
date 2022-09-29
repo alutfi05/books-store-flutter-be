@@ -48,9 +48,9 @@ const EditAuthor = () => {
             <div className="row mt-4">
                 <div className="w-100 text-center my-3">
                     <h4 className="fw-bold" style={{ color: "var(--black)" }}>
-                        Add author
+                        Edit author
                     </h4>
-                    <p className="medium">Let's get started with us</p>
+                    <p className="medium">Update your profile</p>
                 </div>
                 <div className="w-50 mx-auto">
                     <div className="mb-3">

@@ -7,7 +7,7 @@ const Book = () => {
             <div className="w-100">
                 <div className="text-center">
                     <h3
-                        className="text-shadow fs-1"
+                        className="text-shadow fs-1 fw-bold"
                         style={{ color: "var(--green)" }}
                     >
                         Books List
