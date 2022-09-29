@@ -48,8 +48,8 @@ const ListBooks = () => {
                             <th scope="col">Book Title</th>
                             <th scope="col">Synopsis</th>
                             <th scope="col">Publication Year</th>
-                            <th scope="col">Stock</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Stock</th>
                             <th scope="col">Image</th>
                             <th scope="col">Author</th>
                             <th scope="col">Category</th>
