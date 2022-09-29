@@ -6,7 +6,12 @@ const { auth } = require("../middlewares/auth");
 adminRoutes.get("/", AdminController.getAllAdmins);
 adminRoutes.post("/register", upload.single("image"), AdminController.register);
 adminRoutes.post("/login", AdminController.login);
-adminRoutes.put("/:id", auth, upload.single("image"), AdminController.update);
+adminRoutes.put(
+    "/edit/:id",
+    auth,
+    upload.single("image"),
+    AdminController.update
+);
 adminRoutes.delete("/:id", auth, AdminController.delete);
 adminRoutes.get("/account/:id", auth, AdminController.getAdminInfo);
 

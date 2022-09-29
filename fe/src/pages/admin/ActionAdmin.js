@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { register, detailAdmin, edit } from "../../axios/adminAxios";
+import { MdAddTask, MdCancel } from "react-icons/md";
 
 const AddAdmin = () => {
     const [form, setForm] = useState({
@@ -41,7 +42,6 @@ const AddAdmin = () => {
         <>
             <div className="row my-3">
                 <div className="w-100 text-center">
-                    <hr />
                     <p>{id ? "Edit Admin" : "Add Admin"}</p>
                 </div>
                 <div className="w-50 mx-auto">
@@ -107,10 +107,22 @@ const AddAdmin = () => {
                     <div className="mb-3">
                         <button
                             onClick={() => submitHandler()}
-                            className="btn btn-block btn-primary"
+                            className="btn btn-sm btn-primary"
                         >
+                            <span className="me-2">
+                                <MdAddTask />
+                            </span>
                             Submit
                         </button>
+                        <Link
+                            to="/admins"
+                            className="btn btn-sm ms-2 btn-outline-danger"
+                        >
+                            <span className="me-2">
+                                <MdCancel />
+                            </span>
+                            Cancel
+                        </Link>
                     </div>
                 </div>
             </div>

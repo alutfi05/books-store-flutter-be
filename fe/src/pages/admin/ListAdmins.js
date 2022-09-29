@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAdmins, deleteAdmin } from "../../axios/adminAxios";
+import { FaUserEdit } from "react-icons/fa";
+import { MdModeEdit } from "react-icons/md";
+import { RiDeleteBin5Fill } from "react-icons/ri";
+import { BsFillInfoCircleFill } from "react-icons/bs";
+import Loading from "../../helpers/Loading";
 
 const ListAdmins = () => {
     const [admins, setAdmins] = useState([]);
@@ -15,73 +20,74 @@ const ListAdmins = () => {
 
     return (
         <>
-            <div className="row my-3 text-center">
-                <div className="col-9 mx-auto">
-                    <div className="w-100">
-                        <div className="float">
-                            <Link
-                                to="/admins/register"
-                                className="btn btn-sm btn-primary"
-                            >
-                                Add Admin
-                            </Link>
-                            <hr />
-                        </div>
-                        <table className="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Action</th>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr className="table-success text-center">
+                        <th scope="col">No</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Photo Profile</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {admins.length > 0 ? (
+                        admins.map((admin, index) => {
+                            const { id, name, email, image } = admin;
+                            const displayImage =
+                                "http://localhost:3000/" + image;
+                            return (
+                                <tr key={id} className="text-center">
+                                    <td>{index + 1}</td>
+                                    <td>{name}</td>
+                                    <td>{email}</td>
+                                    <td>
+                                        <img
+                                            src={displayImage}
+                                            alt=""
+                                            style={{
+                                                width: "100px",
+                                                height: "100px",
+                                            }}
+                                        />
+                                    </td>
+                                    <td>
+                                        <Link
+                                            to={`/admins/account/${id}`}
+                                            className="btn btn-sm me-2 btn-dark"
+                                        >
+                                            <span className="me-2">
+                                                <BsFillInfoCircleFill />
+                                            </span>
+                                            Detail
+                                        </Link>
+                                        <Link
+                                            to={`/admins/edit/${id}`}
+                                            className="btn btn-sm me-2 btn-warning"
+                                        >
+                                            <span className="me-2">
+                                                <MdModeEdit />
+                                            </span>
+                                            Edit
+                                        </Link>
+                                        <button
+                                            onClick={() => deleteHandler(+id)}
+                                            className="btn btn-sm btn-danger"
+                                        >
+                                            <span className="me-2">
+                                                <RiDeleteBin5Fill />
+                                            </span>
+                                            Delete
+                                        </button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {admins.length > 0 ? (
-                                    admins.map((admin) => {
-                                        const { id, name, email } = admin;
-                                        return (
-                                            <tr key={id}>
-                                                <td>{id}</td>
-                                                <td>{name}</td>
-                                                <td>{email}</td>
-                                                <td>
-                                                    <Link
-                                                        to={`/admins/account/${id}`}
-                                                        className="btn btn-sm me-2 btn-dark"
-                                                    >
-                                                        Detail
-                                                    </Link>
-                                                    <Link
-                                                        to={`/admins/${id}`}
-                                                        className="btn btn-sm me-2 btn-warning"
-                                                    >
-                                                        Edit
-                                                    </Link>
-                                                    <button
-                                                        onClick={() =>
-                                                            deleteHandler(+id)
-                                                        }
-                                                        className="btn btn-sm btn-danger"
-                                                    >
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })
-                                ) : (
-                                    <tr>
-                                        <td>
-                                            <p>Loading...</p>
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                            );
+                        })
+                    ) : (
+                        <Loading />
+                    )}
+                </tbody>
+            </table>
         </>
     );
 };

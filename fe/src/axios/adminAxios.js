@@ -62,7 +62,7 @@ const edit = async (id, data, access_token) => {
     try {
         let result = await axios({
             method: "PUT",
-            url: URL + "/" + id,
+            url: URL + "/edit/" + id,
             data: data,
             headers: {
                 "content-type": "multipart/form-data",

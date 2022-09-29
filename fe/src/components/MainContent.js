@@ -44,7 +44,7 @@ const MainContent = () => {
                 >
                     <Route path="" element={<ListAdmins />}></Route>
                     <Route path="register" element={<ActionAdmin />}></Route>
-                    <Route path="">
+                    <Route path="edit">
                         <Route path=":id" element={<ActionAdmin />}></Route>
                     </Route>
                     <Route path="account">
