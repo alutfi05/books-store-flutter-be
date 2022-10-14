@@ -2,40 +2,26 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { addBook } from "../../axios/bookAxios";
 import { getCategories } from "../../axios/categoryAxios";
-import { getAuthors } from "../../axios/authorAxios";
-import { getPublishers } from "../../axios/publisherAxios";
 import { MdAddTask, MdCancel, MdOutlinePriceChange } from "react-icons/md";
 import { SiBookstack } from "react-icons/si";
-import { TbSortAscendingNumbers } from "react-icons/tb";
-import { BsCalendarDateFill, BsImages } from "react-icons/bs";
+import { BsImages } from "react-icons/bs";
 
 const AddBook = () => {
     const [form, setForm] = useState({
-        title: "",
-        synopsis: "",
-        publicationYear: "",
-        price: 0,
-        stock: 0,
-        image: {},
-        categoryId: "",
-        authorId: "",
-        publisherId: "",
+        bookTitle: "",
+        bookSynopsis: "",
+        bookShortDescription: "",
+        bookPrice: 0,
+        bookSalePrice: 0,
+        stockStatus: "",
+        category: "",
+        bookImage: {},
     });
 
     const [categories, setCategories] = useState([]);
-    const [authors, setAuthors] = useState([]);
-    const [publishers, setPublishers] = useState([]);
 
     useEffect(() => {
         getCategories((result) => setCategories(result));
-    }, []);
-
-    useEffect(() => {
-        getAuthors((result) => setAuthors(result));
-    }, []);
-
-    useEffect(() => {
-        getPublishers((result) => setPublishers(result));
     }, []);
 
     const navigation = useNavigate();
@@ -68,7 +54,10 @@ const AddBook = () => {
                             </span>
                             <input
                                 onChange={(e) =>
-                                    setForm({ ...form, title: e.target.value })
+                                    setForm({
+                                        ...form,
+                                        bookTitle: e.target.value,
+                                    })
                                 }
                                 id="title"
                                 type="text"
@@ -79,46 +68,43 @@ const AddBook = () => {
                         </div>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="sysnopsis" className="form-label">
+                        <label htmlFor="synopsis" className="form-label">
                             Synopsis
                         </label>
                         <textarea
                             onChange={(e) =>
-                                setForm({ ...form, synopsis: e.target.value })
+                                setForm({
+                                    ...form,
+                                    bookSynopsis: e.target.value,
+                                })
                             }
                             className="form-control"
-                            id="sysnopsis"
+                            id="synopsis"
                             rows="3"
                         ></textarea>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="publicationYear" className="form-label">
-                            Publication Year
+                        <label
+                            htmlFor="shortDescription"
+                            className="form-label"
+                        >
+                            Short Description
                         </label>
-                        <div className="input-group mb-3">
-                            <span
-                                className="input-group-text"
-                                id="basic-addon1"
-                            >
-                                <BsCalendarDateFill />
-                            </span>
-                            <input
-                                onChange={(e) =>
-                                    setForm({
-                                        ...form,
-                                        publicationYear: e.target.value,
-                                    })
-                                }
-                                id="publicationYear"
-                                type="date"
-                                className="form-control"
-                                required
-                            />
-                        </div>
+                        <textarea
+                            onChange={(e) =>
+                                setForm({
+                                    ...form,
+                                    bookShortDescription: e.target.value,
+                                })
+                            }
+                            className="form-control"
+                            id="shortDescription"
+                            rows="3"
+                        ></textarea>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="price" className="form-label">
-                            Price
+                            Book Price
                         </label>
                         <div className="input-group mb-3">
                             <span
@@ -131,40 +117,90 @@ const AddBook = () => {
                                 onChange={(e) =>
                                     setForm({
                                         ...form,
-                                        price: e.target.value,
+                                        bookPrice: e.target.value,
                                     })
                                 }
                                 id="price"
-                                type="number"
+                                type="text"
                                 className="form-control"
                                 required
                             />
                         </div>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="price" className="form-label">
-                            Stock
+                        <label htmlFor="salePrice" className="form-label">
+                            Book Sale Price
                         </label>
                         <div className="input-group mb-3">
                             <span
                                 className="input-group-text"
                                 id="basic-addon1"
                             >
-                                <TbSortAscendingNumbers />
+                                <MdOutlinePriceChange />
                             </span>
                             <input
                                 onChange={(e) =>
                                     setForm({
                                         ...form,
-                                        stock: e.target.value,
+                                        bookSalePrice: e.target.value,
                                     })
                                 }
-                                id="stock"
-                                type="number"
+                                id="price"
+                                type="text"
                                 className="form-control"
                                 required
                             />
                         </div>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="stockStatus" className="form-label">
+                            Stock Status
+                        </label>
+                        <select
+                            onChange={(e) =>
+                                setForm({
+                                    ...form,
+                                    stockStatus: e.target.value,
+                                })
+                            }
+                            id="categoryId"
+                            className="form-select"
+                        >
+                            <option defaultValue="">
+                                --- Stock Status ---
+                            </option>
+                            <option value="IN" key="IN">
+                                IN
+                            </option>
+                            <option value="OUT" key="OUT">
+                                OUT
+                            </option>
+                        </select>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="categoryId" className="form-label">
+                            Category
+                        </label>
+                        <select
+                            onChange={(e) =>
+                                setForm({ ...form, category: e.target.value })
+                            }
+                            id="categoryId"
+                            className="form-select"
+                        >
+                            <option defaultValue="">
+                                --- Category Book ---
+                            </option>
+                            {categories.map((category) => {
+                                const { categoryId, categoryName } = category;
+
+                                return (
+                                    <option value={categoryId} key={categoryId}>
+                                        {categoryName}
+                                    </option>
+                                );
+                            })}
+                        </select>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="image" className="form-label">
@@ -181,7 +217,7 @@ const AddBook = () => {
                                 onChange={(e) =>
                                     setForm({
                                         ...form,
-                                        image: e.target.files[0],
+                                        bookImage: e.target.files[0],
                                     })
                                 }
                                 id="image"
@@ -190,77 +226,6 @@ const AddBook = () => {
                                 required
                             />
                         </div>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="categoryId" className="form-label">
-                            Category
-                        </label>
-                        <select
-                            onChange={(e) =>
-                                setForm({ ...form, categoryId: e.target.value })
-                            }
-                            id="categoryId"
-                            className="form-select"
-                        >
-                            <option defaultValue="">
-                                --- Category Book ---
-                            </option>
-                            {categories.map((category, i) => {
-                                const { id, name } = category;
-                                return (
-                                    <option value={id} key={id}>
-                                        {name}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="authorId" className="form-label">
-                            Author
-                        </label>
-                        <select
-                            onChange={(e) =>
-                                setForm({ ...form, authorId: e.target.value })
-                            }
-                            id="authorId"
-                            className="form-select"
-                        >
-                            <option defaultValue="">--- Author ---</option>
-                            {authors.map((author, i) => {
-                                const { id, name } = author;
-                                return (
-                                    <option value={id} key={id}>
-                                        {name}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="publisherId" className="form-label">
-                            Publisher
-                        </label>
-                        <select
-                            onChange={(e) =>
-                                setForm({
-                                    ...form,
-                                    publisherId: e.target.value,
-                                })
-                            }
-                            id="publisherId"
-                            className="form-select"
-                        >
-                            <option defaultValue="">--- Publisher ---</option>
-                            {publishers.map((publisher, i) => {
-                                const { id, name } = publisher;
-                                return (
-                                    <option value={id} key={id}>
-                                        {name}
-                                    </option>
-                                );
-                            })}
-                        </select>
                     </div>
                     <div className="mb-3">
                         <button

@@ -7,21 +7,18 @@ import ListCategories from "./category/ListCategories";
 import AddCategory from "./category/AddCategory";
 import EditCategory from "./category/EditCategory";
 import DetailCategory from "./category/DetailCategory";
-import Author from "./author/Author";
-import ListAuthors from "./author/ListAuthors";
-import AddAuthor from "./author/AddAuthor";
-import EditAuthor from "./author/EditAuthor";
-import DetailAuthor from "./author/DetailAuthor";
 import Book from "./book/Book";
 import ListBooks from "./book/ListBooks";
 import AddBook from "./book/AddBook";
 import EditBook from "./book/EditBook";
 import DetailBook from "./book/DetailBook";
-import Publisher from "./publisher/Publisher";
-import ListPublishers from "./publisher/ListPublishers";
-import AddPublisher from "./publisher/AddPublisher";
-import EditPublisher from "./publisher/EditPublisher";
-import DetailPublisher from "./publisher/DetailPublisher";
+import Slider from "./slider/Slider";
+import AddSlider from "./slider/AddSlider";
+import EditSlider from "./slider/EditSlider";
+import ListSliders from "./slider/ListSlider";
+import DetailSlider from "./slider/DetailSlider";
+import AddRelatedBook from "./relatedBook/AddRelatedBook";
+import RelatedBook from "./relatedBook/RelatedBook";
 
 export {
     Admin,
@@ -33,19 +30,16 @@ export {
     AddCategory,
     EditCategory,
     DetailCategory,
-    Author,
-    ListAuthors,
-    AddAuthor,
-    EditAuthor,
-    DetailAuthor,
     Book,
     ListBooks,
     AddBook,
     EditBook,
     DetailBook,
-    Publisher,
-    ListPublishers,
-    AddPublisher,
-    EditPublisher,
-    DetailPublisher,
+    Slider,
+    AddSlider,
+    EditSlider,
+    ListSliders,
+    DetailSlider,
+    AddRelatedBook,
+    RelatedBook,
 };

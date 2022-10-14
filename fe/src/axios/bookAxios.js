@@ -1,7 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const URL = "http://localhost:3000/api/books";
+const URL = "http://localhost:4000/api/book";
 
 const getBooks = async (cb) => {
     try {
@@ -9,7 +9,7 @@ const getBooks = async (cb) => {
             method: "GET",
             url: URL,
         });
-        cb(books.data);
+        cb(books.data.data);
     } catch (error) {
         console.log(error);
     }
@@ -19,13 +19,14 @@ const addBook = async (book, access_token) => {
     try {
         let newBook = await axios({
             method: "POST",
-            url: URL + "/add",
+            url: URL,
             data: book,
             headers: {
                 "content-type": "multipart/form-data",
                 auth: access_token,
             },
         });
+        console.log(newBook);
         Swal.fire("Add Book!", "Book has been added.", "success");
     } catch (error) {
         console.log(error);
@@ -36,7 +37,7 @@ const editBook = async (id, book, access_token) => {
     try {
         let updateBook = await axios({
             method: "PUT",
-            url: URL + "/edit/" + id,
+            url: URL + "/" + id,
             data: book,
             headers: {
                 "content-type": "multipart/form-data",
@@ -94,14 +95,14 @@ const detailBook = async (id, access_token, cb) => {
     try {
         let findBook = await axios({
             method: "GET",
-            url: URL + "/book/" + id,
+            url: URL + "/" + id,
             headers: {
                 "content-type": "multipart/form-data",
                 auth: access_token,
             },
         });
 
-        cb(findBook.data);
+        cb(findBook.data.data);
     } catch (error) {
         console.log(error);
     }

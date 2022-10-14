@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { addCategory } from "../../axios/categoryAxios";
 import { MdAddTask, MdCancel, MdCategory } from "react-icons/md";
+import { BsImages } from "react-icons/bs";
 
 const AddCategory = () => {
     const [form, setForm] = useState({
-        name: "",
+        categoryName: "",
+        categoryImage: {},
     });
 
     const navigation = useNavigate();
@@ -33,7 +35,10 @@ const AddCategory = () => {
                         </span>
                         <input
                             onChange={(e) =>
-                                setForm({ ...form, name: e.target.value })
+                                setForm({
+                                    ...form,
+                                    categoryName: e.target.value,
+                                })
                             }
                             id="categoryName"
                             type="text"
@@ -41,6 +46,31 @@ const AddCategory = () => {
                             required
                             autoFocus
                         />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="categoryImage" className="form-label">
+                            Category Image
+                        </label>
+                        <div className="input-group mb-3">
+                            <span
+                                className="input-group-text"
+                                id="basic-addon1"
+                            >
+                                <BsImages />
+                            </span>
+                            <input
+                                onChange={(e) =>
+                                    setForm({
+                                        ...form,
+                                        categoryImage: e.target.files[0],
+                                    })
+                                }
+                                id="categoryImage"
+                                type="file"
+                                className="form-control"
+                                required
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="mb-3">

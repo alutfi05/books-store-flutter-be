@@ -1,53 +1,54 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const URL = "http://localhost:3000/api/authors";
+const URL = "http://localhost:4000/api/slider";
 
-const getAuthors = async (cb) => {
+const getSliders = async (cb) => {
     try {
-        let authors = await axios({
+        let sliders = await axios({
             method: "GET",
             url: URL,
         });
-        cb(authors.data);
+
+        cb(sliders.data.data);
     } catch (error) {
         console.log(error);
     }
 };
 
-const addAuthor = async (author, access_token) => {
+const addSlider = async (slider, access_token) => {
     try {
-        let newAuthor = await axios({
+        let newSlider = await axios({
             method: "POST",
-            url: URL + "/add",
-            data: author,
+            url: URL,
+            data: slider,
             headers: {
-                "content-type": "multipart/form-data",
                 auth: access_token,
+                "content-type": "multipart/form-data",
             },
         });
 
-        Swal.fire("Add Author!", "Author has been added.", "success");
+        Swal.fire("Add Slider!", "Slider has been added.", "success");
     } catch (error) {
         console.log(error);
     }
 };
 
-const editAuthor = async (id, author, access_token) => {
+const editSlider = async (id, slider, access_token) => {
     try {
-        let updateAuthor = await axios({
+        let updateSlider = await axios({
             method: "PUT",
-            url: URL + "/edit/" + id,
-            data: author,
+            url: URL + "/" + id,
+            data: slider,
             headers: {
-                "content-type": "multipart/form-data",
                 auth: access_token,
+                "content-type": "multipart/form-data",
             },
         });
 
         Swal.fire(
-            `Edit Author!`,
-            `Author with id "${id}" has been updated.`,
+            `Edit Slider!`,
+            `Slider with id "${id}" has been updated.`,
             "success"
         );
     } catch (error) {
@@ -55,7 +56,7 @@ const editAuthor = async (id, author, access_token) => {
     }
 };
 
-const removeAuthor = async (id, access_token) => {
+const removeSlider = async (id, access_token) => {
     try {
         Swal.fire({
             title: "Are you sure?",
@@ -67,44 +68,45 @@ const removeAuthor = async (id, access_token) => {
             confirmButtonText: "Yes, delete it!",
         }).then(async (result) => {
             if (result.isConfirmed) {
-                let deleteAuthor = await axios({
+                let deleteSlider = await axios({
                     method: "DELETE",
                     url: URL + "/" + id,
                     headers: {
                         auth: access_token,
+                        "content-type": "multipart/form-data",
                     },
                 });
                 Swal.fire(
                     "Deleted!",
-                    `Author with id "${id}" has been deleted.`,
+                    `Silder with id "${id}" has been deleted.`,
                     "success"
                 );
             }
         });
 
         setTimeout(() => {
-            window.location.href = "/authors";
+            window.location.href = "/sliders";
         }, 3000);
     } catch (error) {
         console.log(error);
     }
 };
 
-const detailAuthor = async (id, access_token, cb) => {
+const detailSlider = async (id, access_token, cb) => {
     try {
-        let findAuthor = await axios({
+        let findSlider = await axios({
             method: "GET",
-            url: URL + "/author/" + id,
+            url: URL + "/" + id,
             headers: {
-                "content-type": "multipart/form-data",
                 auth: access_token,
+                "content-type": "multipart/form-data",
             },
         });
 
-        cb(findAuthor.data);
+        cb(findSlider.data.data);
     } catch (error) {
         console.log(error);
     }
 };
 
-export { getAuthors, addAuthor, editAuthor, removeAuthor, detailAuthor };
+export { getSliders, addSlider, editSlider, removeSlider, detailSlider };

@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getCategories, removeCategory } from "../../axios/categoryAxios";
+import { getSliders, removeSlider } from "../../axios/sliderAxios";
 import Loading from "../../helpers/Loading";
-import { BiCategoryAlt } from "react-icons/bi";
+import { TbDiscount2 } from "react-icons/tb";
 import { MdModeEdit } from "react-icons/md";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 
-const ListCategories = () => {
-    const [categories, setCategories] = useState([]);
+const ListSliders = () => {
+    const [sliders, setSliders] = useState([]);
 
     useEffect(() => {
-        getCategories((result) => setCategories(result));
+        getSliders((result) => setSliders(result));
     }, []);
 
     const deleteHandler = (id) => {
-        removeCategory(id, localStorage.access_token);
+        removeSlider(id, localStorage.access_token);
     };
 
     return (
@@ -22,39 +22,42 @@ const ListCategories = () => {
             <div className="w-100">
                 <div className="mt-4 text-center">
                     <Link
-                        to="/categories/add"
+                        to="/sliders/add"
                         className="btn btn-sm btn-success mb-4"
                     >
                         <span className="me-2">
-                            <BiCategoryAlt />
+                            <TbDiscount2 />
                         </span>
-                        Add Category
+                        Add Slider
                     </Link>
                     <div>
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr className="table-success text-center">
                                     <th scope="col">No</th>
-                                    <th scope="col">Category Name</th>
-                                    <th scope="col">Category Image</th>
+                                    <th scope="col">Slider Name</th>
+                                    <th scope="col">Slider Description</th>
+                                    <th scope="col">Slider Image</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {categories.length > 0 ? (
-                                    categories.map((category, index) => {
+                                {sliders.length > 0 ? (
+                                    sliders.map((slider, index) => {
                                         const {
-                                            categoryId,
-                                            categoryName,
-                                            categoryImage,
-                                        } = category;
+                                            sliderId,
+                                            sliderName,
+                                            sliderDescription,
+                                            sliderImage,
+                                        } = slider;
                                         const displayImage =
                                             "http://localhost:4000" +
-                                            categoryImage;
+                                            sliderImage;
                                         return (
-                                            <tr key={categoryId}>
+                                            <tr key={sliderId}>
                                                 <td>{index + 1}</td>
-                                                <td>{categoryName}</td>
+                                                <td>{sliderName}</td>
+                                                <td>{sliderDescription}</td>
                                                 <td>
                                                     <img
                                                         src={displayImage}
@@ -67,7 +70,7 @@ const ListCategories = () => {
                                                 </td>
                                                 <td>
                                                     <Link
-                                                        to={`/categories/edit/${categoryId}`}
+                                                        to={`/sliders/edit/${sliderId}`}
                                                         className="btn btn-sm me-2 btn-warning"
                                                     >
                                                         <MdModeEdit />
@@ -75,7 +78,7 @@ const ListCategories = () => {
                                                     <button
                                                         onClick={() =>
                                                             deleteHandler(
-                                                                categoryId
+                                                                sliderId
                                                             )
                                                         }
                                                         className="btn btn-sm btn-danger"
@@ -98,4 +101,4 @@ const ListCategories = () => {
     );
 };
 
-export default ListCategories;
+export default ListSliders;

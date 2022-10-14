@@ -1,7 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const URL = "http://localhost:3000/api/categories";
+const URL = "http://localhost:4000/api/category";
 
 const getCategories = async (cb) => {
     try {
@@ -10,7 +10,7 @@ const getCategories = async (cb) => {
             url: URL,
         });
 
-        cb(categories.data);
+        cb(categories.data.data);
     } catch (error) {
         console.log(error);
     }
@@ -20,10 +20,11 @@ const addCategory = async (category, access_token) => {
     try {
         let newCategory = await axios({
             method: "POST",
-            url: URL + "/add",
+            url: URL,
             data: category,
             headers: {
                 auth: access_token,
+                "content-type": "multipart/form-data",
             },
         });
 
@@ -37,10 +38,11 @@ const editCategory = async (id, category, access_token) => {
     try {
         let updateCategory = await axios({
             method: "PUT",
-            url: URL + "/edit/" + id,
+            url: URL + "/" + id,
             data: category,
             headers: {
                 auth: access_token,
+                "content-type": "multipart/form-data",
             },
         });
 
@@ -71,6 +73,7 @@ const removeCategory = async (id, access_token) => {
                     url: URL + "/" + id,
                     headers: {
                         auth: access_token,
+                        "content-type": "multipart/form-data",
                     },
                 });
                 Swal.fire(
@@ -93,13 +96,14 @@ const detailCategory = async (id, access_token, cb) => {
     try {
         let findCategory = await axios({
             method: "GET",
-            url: URL + "/category/" + id,
+            url: URL + "/" + id,
             headers: {
                 auth: access_token,
+                "content-type": "multipart/form-data",
             },
         });
 
-        cb(findCategory.data);
+        cb(findCategory.data.data);
     } catch (error) {
         console.log(error);
     }

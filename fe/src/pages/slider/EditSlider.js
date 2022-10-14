@@ -1,38 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { editCategory, detailCategory } from "../../axios/categoryAxios";
-import { MdAddTask, MdCancel, MdCategory } from "react-icons/md";
+import { editSlider, detailSlider } from "../../axios/sliderAxios";
+import { MdAddTask, MdCancel } from "react-icons/md";
+import { TbShoppingCartDiscount } from "react-icons/tb";
 import { BsImages } from "react-icons/bs";
 
-const AddCategory = () => {
+const EditSlider = () => {
     const [form, setForm] = useState({
-        categoryName: "",
-        categoryImage: {},
+        sliderName: "",
+        sliderDescription: "",
+        sliderImage: {},
     });
 
     const navigation = useNavigate();
     const params = useParams();
 
-    const getCategoryDetail = () => {
+    const getSliderDetail = () => {
         const { id } = params;
 
-        detailCategory(id, localStorage.access_token, (result) => {
+        detailSlider(id, localStorage.access_token, (result) => {
             setForm({
-                categoryName: result.categoryName,
-                categoryImage: result.categoryImage,
+                sliderName: result.sliderName,
+                sliderDescription: result.sliderDescription,
+                sliderImage: result.sliderImage,
             });
         });
     };
 
     useEffect(() => {
-        getCategoryDetail();
+        getSliderDetail();
     }, []);
 
     const submitHandler = () => {
         const { id } = params;
 
-        editCategory(id, form, localStorage.access_token);
-        navigation("/categories");
+        editSlider(id, form, localStorage.access_token);
+        navigation("/sliders");
     };
 
     const api_img = "http://localhost:4000";
@@ -41,28 +44,28 @@ const AddCategory = () => {
         <div className="row mt-4">
             <div className="w-100 text-center my-3">
                 <h4 className="fw-bold" style={{ color: "var(--black)" }}>
-                    Edit a category for books
+                    Create a slider for banner in book store
                 </h4>
-                <p className="medium">Something wrong? let's edited!</p>
+                <p className="medium">Let's create a banner</p>
             </div>
             <div className="w-50 mx-auto">
                 <div className="mb-3">
-                    <label htmlFor="categoryName" className="form-label">
-                        Category name
+                    <label htmlFor="sliderName" className="form-label">
+                        Slider Name
                     </label>
                     <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">
-                            <MdCategory />
+                            <TbShoppingCartDiscount />
                         </span>
                         <input
-                            value={form.categoryName}
+                            value={form.sliderName}
                             onChange={(e) =>
                                 setForm({
                                     ...form,
-                                    categoryName: e.target.value,
+                                    sliderName: e.target.value,
                                 })
                             }
-                            id="categoryName"
+                            id="sliderName"
                             type="text"
                             className="form-control"
                             required
@@ -71,8 +74,25 @@ const AddCategory = () => {
                     </div>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="image" className="form-label">
-                        Category Image
+                    <label htmlFor="SliderDescription" className="form-label">
+                        Slider Description
+                    </label>
+                    <textarea
+                        value={form.sliderDescription}
+                        onChange={(e) =>
+                            setForm({
+                                ...form,
+                                sliderDescription: e.target.value,
+                            })
+                        }
+                        className="form-control"
+                        id="SliderDescription"
+                        rows="3"
+                    ></textarea>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="sliderImage" className="form-label">
+                        Slider Image
                     </label>
                     <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">
@@ -82,10 +102,10 @@ const AddCategory = () => {
                             onChange={(e) =>
                                 setForm({
                                     ...form,
-                                    categoryImage: e.target.files[0],
+                                    sliderImage: e.target.files[0],
                                 })
                             }
-                            id="image"
+                            id="sliderImage"
                             type="file"
                             className="form-control"
                             required
@@ -93,17 +113,13 @@ const AddCategory = () => {
                     </div>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="image">Book Image Now</label>
+                    <label htmlFor="image">Slider Image Now</label>
                     <br />
                     <img
-                        src={
-                            form.categoryImage
-                                ? api_img + form.categoryImage
-                                : ""
-                        }
+                        src={form.sliderImage ? api_img + form.sliderImage : ""}
                         alt="You have selected new image to be uploaded!"
-                        width={form.categoryImage ? "100" : "100"}
-                        height={form.categoryImage ? "100" : "100"}
+                        width={form.sliderImage ? "100" : "100"}
+                        height={form.sliderImage ? "100" : "100"}
                     />
                 </div>
                 <div className="mb-3">
@@ -114,10 +130,10 @@ const AddCategory = () => {
                         <span className="me-2">
                             <MdAddTask />
                         </span>
-                        Edit
+                        Submit
                     </button>
                     <Link
-                        to="/categories"
+                        to="/sliders"
                         className="btn btn-sm btn-outline-danger ms-2"
                     >
                         <span className="me-2">
@@ -131,4 +147,4 @@ const AddCategory = () => {
     );
 };
 
-export default AddCategory;
+export default EditSlider;

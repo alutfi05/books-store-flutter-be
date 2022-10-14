@@ -7,12 +7,7 @@ const Home = () => {
             <div className="row">
                 <div className="col-6 d-flex align-items-center">
                     <div className="text-center">
-                        <h2 className="fw-bold">
-                            Welcome to Admin Dashboard,{" "}
-                            <span style={{ color: "var(--green)" }}>
-                                Admin name
-                            </span>
-                        </h2>
+                        <h2 className="fw-bold">Welcome to Admin Dashboard</h2>
                         <p className="my-4 text-muted">
                             in here you can do, adding, edit, even deleted book,
                             author, publisher. please use your rights wisely

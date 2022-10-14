@@ -94,7 +94,7 @@ const Login = (props) => {
                             <p>
                                 Don't have an account ?{" "}
                                 <Link
-                                    to="/admins/register"
+                                    to="/register"
                                     className="text-decoration-none text-primary"
                                 >
                                     Create an account here

@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "../components";
+
 import {
     Admin,
     DetailAdmin,
@@ -16,16 +17,13 @@ import {
     AddBook,
     EditBook,
     DetailBook,
-    Author,
-    ListAuthors,
-    AddAuthor,
-    EditAuthor,
-    DetailAuthor,
-    Publisher,
-    ListPublishers,
-    AddPublisher,
-    EditPublisher,
-    DetailPublisher,
+    Slider,
+    AddSlider,
+    EditSlider,
+    ListSliders,
+    DetailSlider,
+    AddRelatedBook,
+    RelatedBook,
 } from "../pages";
 
 const MainContent = () => {
@@ -85,31 +83,24 @@ const MainContent = () => {
                 </Route>
                 <Route
                     activeClassName="active"
-                    path="authors"
-                    element={<Author />}
+                    path="sliders"
+                    element={<Slider />}
                 >
-                    <Route path="" element={<ListAuthors />}></Route>
-                    <Route path="add" element={<AddAuthor />}></Route>
+                    <Route path="" element={<ListSliders />}></Route>
+                    <Route path="add" element={<AddSlider />}></Route>
                     <Route path="edit">
-                        <Route path=":id" element={<EditAuthor />}></Route>
+                        <Route path=":id" element={<EditSlider />}></Route>
                     </Route>
                     <Route path="detail">
-                        <Route path=":id" element={<DetailAuthor />}></Route>
+                        <Route path=":id" element={<DetailSlider />}></Route>
                     </Route>
                 </Route>
                 <Route
                     activeClassName="active"
-                    path="publishers"
-                    element={<Publisher />}
+                    path="relatedBooks"
+                    element={<RelatedBook />}
                 >
-                    <Route path="" element={<ListPublishers />}></Route>
-                    <Route path="add" element={<AddPublisher />}></Route>
-                    <Route path="edit">
-                        <Route path=":id" element={<EditPublisher />}></Route>
-                    </Route>
-                    <Route path="detail">
-                        <Route path=":id" element={<DetailPublisher />}></Route>
-                    </Route>
+                    <Route path="" element={<AddRelatedBook />}></Route>
                 </Route>
             </Routes>
         </div>

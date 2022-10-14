@@ -4,7 +4,6 @@ import { getBooks, removeBook } from "../../axios/bookAxios";
 import { RiHealthBookFill } from "react-icons/ri";
 import { MdModeEdit } from "react-icons/md";
 import { RiDeleteBin5Fill } from "react-icons/ri";
-import { BsFillInfoCircleFill } from "react-icons/bs";
 import Loading from "../../helpers/Loading";
 import rupiah from "../../helpers/RupiahFormatter";
 
@@ -47,13 +46,12 @@ const ListBooks = () => {
                             <th scope="col">No</th>
                             <th scope="col">Book Title</th>
                             <th scope="col">Synopsis</th>
-                            <th scope="col">Publication Year</th>
+                            <th scope="col">Short Description</th>
                             <th scope="col">Price</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Author</th>
+                            <th scope="col">Sale Price</th>
+                            <th scope="col">Stock Status</th>
                             <th scope="col">Category</th>
-                            <th scope="col">Publisher</th>
+                            <th scope="col">Book Image</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -64,7 +62,7 @@ const ListBooks = () => {
                                     if (query === "") {
                                         return book;
                                     } else if (
-                                        book.title
+                                        book.bookTitle
                                             .toLowerCase()
                                             .includes(query.toLowerCase())
                                     ) {
@@ -74,39 +72,29 @@ const ListBooks = () => {
                                 .map((book, index) => {
                                     console.log(book);
                                     const {
-                                        id,
-                                        title,
-                                        synopsis,
-                                        publicationYear,
-                                        stock,
-                                        price,
-                                        image,
-                                        author,
-                                        category,
-                                        publisher,
+                                        bookId,
+                                        bookTitle,
+                                        bookSynopsis,
+                                        bookShortDescription,
+                                        stockStatus,
+                                        bookPrice,
+                                        bookSalePrice,
+                                        bookImage,
                                     } = book;
                                     const displayImage =
-                                        "http://localhost:3000/" + image;
+                                        "http://localhost:4000" + bookImage;
                                     return (
-                                        <tr key={id}>
+                                        <tr key={bookId}>
                                             <td>{index + 1}</td>
-                                            <td>{title}</td>
-                                            <td>{synopsis}</td>
+                                            <td>{bookTitle}</td>
+                                            <td>{bookSynopsis}</td>
+                                            <td>{bookShortDescription}</td>
+                                            <td>{rupiah(bookPrice)}</td>
+                                            <td>{rupiah(bookSalePrice)}</td>
+                                            <td>{stockStatus}</td>
                                             <td>
-                                                {new Date(
-                                                    publicationYear
-                                                ).getFullYear()}{" "}
-                                                -{" "}
-                                                {new Date(
-                                                    publicationYear
-                                                ).getMonth() + 1}{" "}
-                                                -{" "}
-                                                {new Date(
-                                                    publicationYear
-                                                ).getDate()}
+                                                {book.category.categoryName}
                                             </td>
-                                            <td>{rupiah(price)}</td>
-                                            <td>{stock} pcs</td>
                                             <td>
                                                 <img
                                                     src={displayImage}
@@ -117,25 +105,16 @@ const ListBooks = () => {
                                                     }}
                                                 />
                                             </td>
-                                            <td>{author.name}</td>
-                                            <td>{category.name}</td>
-                                            <td>{publisher.name}</td>
                                             <td>
                                                 <Link
-                                                    to={`/books/detail/${id}`}
-                                                    className="btn btn-sm me-2 btn-dark"
-                                                >
-                                                    <BsFillInfoCircleFill />
-                                                </Link>
-                                                <Link
-                                                    to={`/books/edit/${id}`}
+                                                    to={`/books/edit/${bookId}`}
                                                     className="btn btn-sm me-2 btn-warning"
                                                 >
                                                     <MdModeEdit />
                                                 </Link>
                                                 <button
                                                     onClick={() =>
-                                                        deleteHandler(+id)
+                                                        deleteHandler(bookId)
                                                     }
                                                     className="btn btn-sm btn-danger"
                                                 >

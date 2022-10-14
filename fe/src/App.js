@@ -22,11 +22,6 @@ const App = () => {
     }, [loginStatus]);
 
     return (
-        // <div>
-        //   <Navbar />
-        //   <MainContent />
-        // </div>
-
         <>
             <div className="container-fluid">
                 {loginStatus ? (

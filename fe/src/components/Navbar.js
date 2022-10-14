@@ -53,13 +53,13 @@ const Navbar = (props) => {
                                 </Link>
                             </li>
                             <li className="nav-item me-3">
-                                <Link className="nav-link" to="/authors">
-                                    Author
+                                <Link className="nav-link" to="/sliders">
+                                    Sliders
                                 </Link>
                             </li>
                             <li className="nav-item me-3">
-                                <Link className="nav-link" to="/publishers">
-                                    Publisher
+                                <Link className="nav-link" to="/relatedBooks">
+                                    Related Books
                                 </Link>
                             </li>
                             <li className="nav-item me-3">
